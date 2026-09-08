@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import com.servicedesk.controller.IRestCustomerController;
 import com.servicedesk.dto.DtoCustomer;
 import com.servicedesk.dto.DtoCustomerIU;
-import com.servicedesk.response.CustommerResponse;
+import com.servicedesk.response.CustomerResponse;
 import com.servicedesk.service.ICustomerService;
 
 @RestController
@@ -21,7 +21,7 @@ public class RestCustomerControllerImpl implements IRestCustomerController {
 
     @Override
     @PostMapping("/save/customer")
-    public CustommerResponse<DtoCustomer> saveCustomer(@RequestBody DtoCustomerIU dtoCustomerIU) {
+    public CustomerResponse<DtoCustomer> saveCustomer(@RequestBody DtoCustomerIU dtoCustomerIU) {
         return customerService.saveCustomer(dtoCustomerIU);
     }
 

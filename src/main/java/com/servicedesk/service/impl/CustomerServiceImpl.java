@@ -6,7 +6,7 @@ import com.servicedesk.dto.DtoCustomer;
 import com.servicedesk.dto.DtoCustomerIU;
 import com.servicedesk.model.Customer;
 import com.servicedesk.repository.CustomerRepository;
-import com.servicedesk.response.CustommerResponse;
+import com.servicedesk.response.CustomerResponse;
 import com.servicedesk.service.ICustomerService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class CustomerServiceImpl implements ICustomerService {
     private final CustomerRepository customerRepository;
 
     @Override
-    public CustommerResponse<DtoCustomer> saveCustomer(
+    public CustomerResponse<DtoCustomer> saveCustomer(
             DtoCustomerIU dtoCustomerIU) {
         Customer customer = new Customer();
         customer.setFirstName(dtoCustomerIU.getFirstName());
@@ -32,9 +32,9 @@ public class CustomerServiceImpl implements ICustomerService {
         dtoCustomer.setFirstName(savedCustomer.getFirstName());
         dtoCustomer.setLastName(savedCustomer.getLastName());
         dtoCustomer.setEmail(savedCustomer.getEmail());
-        dtoCustomer.setCreateTime(savedCustomer.getCreatedAt());
+        dtoCustomer.setCreatedAt(savedCustomer.getCreatedAt());
 
-        return CustommerResponse.success(dtoCustomer);
+        return CustomerResponse.success(dtoCustomer);
 
     }
 }

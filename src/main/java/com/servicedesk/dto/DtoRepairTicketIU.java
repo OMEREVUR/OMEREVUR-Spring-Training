@@ -9,9 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoCustomerIU {
+public class DtoRepairTicketIU {
 
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String issueDescription;
+    private Long customerId;
 }

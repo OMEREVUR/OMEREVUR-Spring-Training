@@ -7,9 +7,9 @@ public enum Response {
 
     SUCCESS(true, 200, "Success"), FAIL(false, 400, "Fail"), ERROR(false, 500, "Error");
 
-    public boolean statusType;
-    public int statusCode;
-    public String message;
+    private boolean statusType;
+    private int statusCode;
+    private String message;
 
     Response(boolean statusType, int statusCode, String message) {
         this.statusType = statusType;

@@ -1,6 +1,7 @@
 package com.servicedesk.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +11,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoCustomer {
+public class DtoRepairTicket {
 
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String issueDescription;
+    private String status;
+    private Double totalPrice;
     private LocalDateTime createdAt;
-    private DtoCustomerContact contact;
+    private DtoCustomer customer;
+    private List<DtoHardwarePart> parts;
 }

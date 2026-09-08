@@ -2,9 +2,9 @@ package com.servicedesk.controller;
 
 import com.servicedesk.dto.DtoCustomer;
 import com.servicedesk.dto.DtoCustomerIU;
-import com.servicedesk.response.CustommerResponse;
+import com.servicedesk.response.CustomerResponse;
 
 public interface IRestCustomerController {
     
-    public CustommerResponse<DtoCustomer> saveCustomer(DtoCustomerIU dtoCustomerIU);
+    CustomerResponse<DtoCustomer> saveCustomer(DtoCustomerIU dtoCustomerIU);
 }

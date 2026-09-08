@@ -1,6 +1,5 @@
 package com.servicedesk.dto;
 
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoCustomer {
+public class DtoCustomerContact {
 
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private LocalDateTime createdAt;
-    private DtoCustomerContact contact;
+    private String phone;
+    private String address;
+    private String emergencyPhone;
 }
