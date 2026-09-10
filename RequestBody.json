@@ -1,0 +1,100 @@
+{
+  "baseUrl": "http://localhost:8080/api/service-desk",
+  "not": "İstekler sırayla çalıştırılmak üzere yazıldı. ID'ler boş bir veritabanı varsayılarak verildi (ilk müşteri = 1, ilk parça = 1). Email ve partCode unique olduğu için aynı istek ikinci kez gönderilirse hata alınır. Başarısız bir kayıt denemesi de ID tüketir; bu durumda sonraki ID'ler kayar, customerId / partIds değerlerini gerçek ID'lere göre güncelle.",
+  "requests": [
+    {
+      "name": "1. Müşteri kaydı (iletişim bilgisiyle)",
+      "method": "POST",
+      "path": "/save/customer",
+      "body": {
+        "firstName": "Hakan",
+        "lastName": "Adem",
+        "email": "hakan.adem@example.com",
+        "contact": {
+          "phone": "05551112233",
+          "address": "Kadıköy, İstanbul",
+          "emergencyPhone": "05559998877"
+        }
+      }
+    },
+    {
+      "name": "2. Müşteri kaydı (iletişim bilgisi olmadan)",
+      "method": "POST",
+      "path": "/save/customer",
+      "body": {
+        "firstName": "Ayşe",
+        "lastName": "Yılmaz",
+        "email": "ayse.yilmaz@example.com"
+      }
+    },
+    {
+      "name": "3. Müşteriye iletişim bilgisi ekleme / güncelleme",
+      "method": "PUT",
+      "path": "/set/customer/2/contact",
+      "body": {
+        "phone": "05324445566",
+        "address": "Çankaya, Ankara",
+        "emergencyPhone": "05327778899"
+      }
+    },
+    {
+      "name": "4. Parça kaydı (stok adediyle)",
+      "method": "POST",
+      "path": "/save/hardware-part",
+      "body": {
+        "partName": "Güç Entegresi",
+        "partCode": "PWR-IC-001",
+        "price": 1000.0,
+        "stockQuantity": 15
+      }
+    },
+    {
+      "name": "5. Parça kaydı (stok adedi olmadan)",
+      "method": "POST",
+      "path": "/save/hardware-part",
+      "body": {
+        "partName": "Klavye Modülü",
+        "partCode": "KBD-MOD-002",
+        "price": 1500.0
+      }
+    },
+    {
+      "name": "6. Parçaları listeleme",
+      "method": "GET",
+      "path": "/list/hardware-part",
+      "body": null
+    },
+    {
+      "name": "7. Arıza fişi (parçalarla)",
+      "method": "POST",
+      "path": "/save/ticket",
+      "beklenen": "totalPrice = 1000 + 1500 + 250 (işçilik) = 2750.0",
+      "body": {
+        "issueDescription": "Cihaz sıvı teması sonrası açılmıyor",
+        "customerId":   1,
+        "partIds": [1, 2]
+      }
+    },
+    {
+      "name": "8. Arıza fişi (parça olmadan)",
+      "method": "POST",
+      "path": "/save/ticket",
+      "beklenen": "parts boş liste, totalPrice null",
+      "body": {
+        "issueDescription": "Ekranda dikey çizgiler var, teşhis bekleniyor",
+        "customerId": 2
+      }
+    },
+    {
+      "name": "9. Arıza fişi (geçersiz parça ID'si)",
+      "method": "POST",
+      "path": "/save/ticket",
+      "beklenen": "HTTP 404, message: 'Kayıt bulunamadı : Parça ID: [99]', fiş kaydedilmez",
+      "body": {
+        "issueDescription": "Fan sesli çalışıyor",
+        "customerId": 1,
+        "partIds": [1, 99]
+      }
+    }
+  ]
+}

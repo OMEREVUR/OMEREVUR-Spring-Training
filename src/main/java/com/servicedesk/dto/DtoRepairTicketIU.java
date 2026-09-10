@@ -1,5 +1,9 @@
 package com.servicedesk.dto;
 
+import java.util.List;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +15,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DtoRepairTicketIU {
 
+    @NotBlank(message = "Arıza açıklaması boş olamaz")
     private String issueDescription;
+
+    @NotNull(message = "Müşteri ID boş olamaz")
     private Long customerId;
+
+    private List<@NotNull(message = "Parça ID boş olamaz") Long> partIds;
 }

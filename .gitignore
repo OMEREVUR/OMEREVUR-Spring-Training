@@ -53,3 +53,11 @@ application-secret.properties
 .DS_Store
 Thumbs.db
 desktop.ini
+
+### Kişisel notlar / dokümanlar ###
+Doküman.md
+Kod_Standartlari_Raporu.md
+Spring_Kursum.md
+
+### Testler ###
+src/test/

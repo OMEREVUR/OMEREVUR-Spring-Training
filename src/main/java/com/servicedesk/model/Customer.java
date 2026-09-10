@@ -46,5 +46,4 @@ public class Customer {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_contact_id")
     private CustomerContact contact;
-
 }

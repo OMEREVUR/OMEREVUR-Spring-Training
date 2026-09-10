@@ -12,23 +12,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "customer_contact")
+@Table(name = "hardware_part")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class CustomerContact {
+@NoArgsConstructor
+public class HardwarePart {
 
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "phone", nullable = false)
-    private String phone;
+    @Column(name = "part_name", nullable = false)
+    private String partName;
 
-    @Column(name = "address", nullable = false)
-    private String address;
+    @Column(name = "part_code", nullable = false, unique = true)
+    private String partCode;
 
-    @Column(name = "emergency_phone")
-    private String emergencyPhone;
+    @Column(name = "price", nullable = false)
+    private Double price;
+
+    @Column(name = "stock_quantity", nullable = true)
+    private Integer stockQuantity;
+
 }

@@ -11,6 +11,7 @@ import com.servicedesk.dto.DtoRepairTicketIU;
 import com.servicedesk.response.CustomerResponse;
 import com.servicedesk.service.IRepairTicketService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -22,7 +23,7 @@ public class RestRepairTicketControllerImpl implements IRestRepairTicketControll
 
     @Override
     @PostMapping("/save/ticket")
-    public CustomerResponse<DtoRepairTicket> saveRepairTicket(@RequestBody DtoRepairTicketIU dto) {
+    public CustomerResponse<DtoRepairTicket> saveRepairTicket(@Valid @RequestBody DtoRepairTicketIU dto) {
         return CustomerResponse.success(repairTicketService.saveRepairTicket(dto));
     }
 }
